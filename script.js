@@ -2,6 +2,7 @@ function enviarVoto() {
   const nome = document.getElementById('nome').value.trim();
   const candidato = document.querySelector('input[name="candidato"]:checked');
   const som = document.getElementById('som');
+  const botao = document.getElementById('btn-enviar');
 
   if (!nome) {
     alert('Por favor, preencha seu nome!');
@@ -15,10 +16,10 @@ function enviarVoto() {
 
   const escolhido = candidato.value;
 
-  // Mostra loading (você pode estilizar isso no CSS)
-  document.getElementById('loading').style.display = 'block';
+  // Desativa botão e muda texto
+  botao.disabled = true;
+  botao.textContent = 'Enviando...';
 
-  // Envia os dados para sua planilha do Google Sheets
   fetch("https://script.google.com/macros/s/AKfycbyiIxCxGxZSwOFMLZiiziyTTWHj-IkZ6iZ5Gh8G_Slw4vF9h7nwqYzfx9Uj_wrHA3dUcw/exec", {
     method: "POST",
     body: JSON.stringify({
@@ -29,30 +30,27 @@ function enviarVoto() {
       "Content-Type": "application/json"
     }
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Voto registrado com sucesso!", data);
+    .then(response => response.json())
+    .then(data => {
+      console.log("Voto enviado!", data);
 
-    som.pause();
-    som.currentTime = 0;
-    som.play();
+      som.pause();
+      som.currentTime = 0;
+      som.play();
 
-    document.getElementById('popup').style.display = 'block';
-    document.getElementById('popup-overlay').style.display = 'block';
-    document.getElementById('loading').style.display = 'none';
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('popup-overlay').style.display = 'block';
 
-    document.getElementById('nome').value = '';
-    candidato.checked = false;
-  })
-  .catch(error => {
-    console.error("Erro ao enviar voto:", error);
-    alert("Erro ao enviar voto. Tente novamente.");
-    document.getElementById('loading').style.display = 'none';
-  });
+      document.getElementById('nome').value = '';
+      candidato.checked = false;
+    })
+    .catch(error => {
+      console.error("Erro ao enviar voto:", error);
+      alert("Erro ao enviar voto. Tente novamente.");
+    })
+    .finally(() => {
+      // Reativa botão e volta texto original
+      botao.disabled = false;
+      botao.textContent = 'Enviar Voto!';
+    });
 }
-
-// Fecha popup ao clicar fora
-document.getElementById('popup-overlay').addEventListener('click', () => {
-  document.getElementById('popup').style.display = 'none';
-  document.getElementById('popup-overlay').style.display = 'none';
-});
