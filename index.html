@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,23 +8,26 @@
 </head>
 <body>
   <div class="container">
-    <img src="images/eleicao.png" alt="Eleição dos Bichos" class="logo" />
-
-    <div class="form-container">
-      <p class="instruction">
-        Para votar, insira seu nome abaixo, escolha seu candidato e clique em enviar voto!
-      </p>
-      <input type="text" id="nome" placeholder="Seu nome" required />
+    <div class="header-box">
+      <div class="form-container">
+        <img src="images/eleicao.png" alt="Eleição dos Bichos" class="logo" />
+        <p class="instruction">
+          Para votar, insira seu nome abaixo, escolha seu candidato e clique em enviar voto!
+        </p>
+        <div class="input-wrapper">
+          <input type="text" id="nome" placeholder="Seu nome" required />
+        </div>
+      </div>
     </div>
 
-    <h2 class="titulo">Candidatos</h2>
+    <img src="images/candidatos.png" alt="Candidatos" class="titulo" />
 
     <div class="cards">
       <!-- LEÃO -->
       <label class="card">
         <img src="images/LEAO.png" alt="Leão" />
         <input type="radio" name="candidato" value="Leão" />
-        <span>Você votou no Leão!</span>
+        <span>Vote no Leão!</span>
       </label>
 
       <!-- MACACA (desclassificada) -->
