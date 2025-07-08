@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eleição dos Bichos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="images/eleicao.png" alt="Eleição dos Bichos" class="logo" />
+
+    <div class="form-container">
+      <p class="instruction">
+        Para votar, insira seu nome abaixo, escolha seu candidato e clique em enviar voto!
+      </p>
+      <input type="text" id="nome" placeholder="Seu nome" required />
+    </div>
+
+    <h2 class="titulo">Candidatos</h2>
+
+    <div class="cards">
+      <!-- LEÃO -->
+      <label class="card">
+        <img src="images/LEAO.png" alt="Leão" />
+        <input type="radio" name="candidato" value="Leão" />
+        <span>Você votou no Leão!</span>
+      </label>
+
+      <!-- MACACA (desclassificada) -->
+      <label class="card desclassificado">
+        <img src="images/MACACA.png" alt="Macaca" />
+        <input type="radio" name="candidato" value="Macaca" disabled />
+        <span>Macaca DESCLASSIFICADA!</span>
+      </label>
+
+      <!-- PREGUIÇA -->
+      <label class="card">
+        <img src="images/PREGUICA.png" alt="Preguiça" />
+        <input type="radio" name="candidato" value="Preguiça" />
+        <span>Vote na Preguiça!</span>
+      </label>
+
+      <!-- COBRA -->
+      <label class="card">
+        <img src="images/COBRA.png" alt="Cobra" />
+        <input type="radio" name="candidato" value="Cobra" />
+        <span>Vote na Cobra!</span>
+      </label>
+    </div>
+
+    <button onclick="enviarVoto()">Enviar Voto!</button>
+  </div>
+
+  <!-- Popup de confirmação -->
+  <div class="popup" id="popup">
+    <img src="images/confirmacao.png" alt="Confirmação" />
+  </div>
+
+  <audio id="som" src="images/sound.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
