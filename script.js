@@ -20,7 +20,7 @@ function enviarVoto() {
   botao.disabled = true;
   botao.textContent = 'Enviando...';
 
-  fetch("https://script.google.com/macros/s/AKfycbyiIxCxGxZSwOFMLZiiziyTTWHj-IkZ6iZ5Gh8G_Slw4vF9h7nwqYzfx9Uj_wrHA3dUcw/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbx-76rXyYwAD8MkOmPgk3dW9e079Hru2-2bOVBIcITcCvwW3r9aJ-6M4dcOZRyqwvTfJg/exec", {
     method: "POST",
     body: JSON.stringify({
       nome: nome,
