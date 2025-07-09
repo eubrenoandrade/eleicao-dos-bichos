@@ -16,41 +16,33 @@ function enviarVoto() {
 
   const escolhido = candidato.value;
 
-  // Desativa botão e muda texto
   botao.disabled = true;
   botao.textContent = 'Enviando...';
 
-  fetch("https://script.google.com/macros/s/AKfycbx-76rXyYwAD8MkOmPgk3dW9e079Hru2-2bOVBIcITcCvwW3r9aJ-6M4dcOZRyqwvTfJg/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwsaCscdTPbW46OCj7Yo5Zy3b24ioRgrdUqzw7Gr3h9QTnjL5G-9SUl0k5R4CWVdr0K/exec", {
     method: "POST",
-    body: JSON.stringify({
-      nome: nome,
-      candidato: escolhido
-    }),
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({ nome, candidato: escolhido })
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Voto enviado!", data);
+  .then(() => {
+    som.pause();
+    som.currentTime = 0;
+    som.play();
 
-      som.pause();
-      som.currentTime = 0;
-      som.play();
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('popup-overlay').style.display = 'block';
 
-      document.getElementById('popup').style.display = 'block';
-      document.getElementById('popup-overlay').style.display = 'block';
-
-      document.getElementById('nome').value = '';
-      candidato.checked = false;
-    })
-    .catch(error => {
-      console.error("Erro ao enviar voto:", error);
-      alert("Erro ao enviar voto. Tente novamente.");
-    })
-    .finally(() => {
-      // Reativa botão e volta texto original
-      botao.disabled = false;
-      botao.textContent = 'Enviar Voto!';
-    });
+    document.getElementById('nome').value = '';
+    candidato.checked = false;
+  })
+  .catch(() => {
+    alert("Erro ao enviar voto. Tente novamente.");
+  })
+  .finally(() => {
+    botao.disabled = false;
+    botao.textContent = 'Enviar Voto!';
+  });
 }
